@@ -52,9 +52,11 @@ python3 -m pip install -r requirements-build.txt
 python3 scripts/build_site.py
 ```
 
-运行后直接打开 `index.html` 即可离线阅读。构建依赖 `mistune`；打开生成的 HTML 不需要 Python 或网络。
+运行后直接打开 `index.html` 即可离线阅读。构建依赖 `requirements-build.txt` 中的 `mistune` 与 `beautifulsoup4`；打开生成的 HTML 不需要 Python 或网络。
 
-目前只把 **1.1 Markdown** 接入了自动生成流程；其他章节仍处于草稿/规划阶段，不能因为存在 Markdown 文件就宣称它们已发布。
+目前 **1.1、1.2 Markdown** 均已接入自动生成流程，对应 `v0.3.0-preview`；分节导航与目录支持直接定位，无 JS 时按顺序显示全部正文。其他章节仍处于规划阶段。阅读预览和阅读器检查不代表章节通过人工审核，更不代表产品功能与硬件验收通过。
+
+修改后检查 `git diff --check`，并按 `docs/validation/reader-v0.3.0-preview.md` 检查正文同步、锚点、桌面/移动布局、离线交互、无 JS 阅读和打印；需求测试计划须与已经执行的阅读器检查分开记录。未经仓库所有者同意，不直接 push 到 GitHub。
 
 ## rsync 放在哪里？
 

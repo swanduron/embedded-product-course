@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>现代嵌入式产品工程 | 阅读预览 v0.2.0-preview</title><style>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>现代嵌入式产品工程 | 阅读预览 v0.3.0-preview</title><style>
 :root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#233043;background:#f4f6fa;line-height:1.75}*{box-sizing:border-box}body{margin:0}.shell{display:grid;grid-template-columns:268px minmax(0,1fr);min-height:100vh}aside{background:#142338;color:#e7eef9;padding:24px 18px;position:sticky;top:0;height:100vh;overflow-y:auto}aside h1{font-size:19px;line-height:1.35;margin:0 0 8px}aside small{color:#9cb6d7}nav{margin-top:25px}nav button{display:block;width:100%;border:0;border-radius:9px;text-align:left;background:none;color:#bdcde1;padding:11px 12px;cursor:pointer;font:inherit;font-size:13px}nav button:hover,nav button.active{background:#304765;color:white}main{padding:46px min(6vw,75px);max-width:1150px;width:100%;margin:auto}section{display:none;animation:fade .15s}section.active{display:block}@keyframes fade{from{opacity:.5}to{opacity:1}}h2{font-size:32px;line-height:1.3;margin:0 0 12px}h3{margin-top:35px;font-size:21px}p{max-width:790px} .tag{display:inline-block;border:1px solid #b6cae3;background:#e6effb;color:#245c98;padding:2px 9px;border-radius:100px;font-size:12px}.lead{font-size:18px;color:#536174}.panel{background:white;border:1px solid #dfe5ef;border-radius:14px;padding:20px 24px;margin:22px 0;box-shadow:0 5px 22px #253f6410}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:#f7f9fc;border:1px solid #e3e8f1;border-radius:10px;padding:14px}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}pre{white-space:pre-wrap;background:#162337;color:#e5f3fa;padding:18px;border-radius:10px;font-size:13px;overflow-x:auto}button.action{background:#2468ac;color:white;border:0;border-radius:8px;padding:9px 15px;cursor:pointer;font-weight:600}button.action.secondary{background:#edf2f8;color:#234c70}.buttons{display:flex;gap:10px;flex-wrap:wrap}.oled{width:min(100%,480px);aspect-ratio:2 / 1; background:#06111e;border:11px solid #26313f;border-radius:14px;color:#f4faff;padding:18px 22px;font-family:ui-monospace,monospace;box-shadow:inset 0 0 20px #0b395155}.oled .top{display:flex;justify-content:space-between;border-bottom:1px solid #49687c;padding-bottom:8px;font-size:14px}.oled .body{min-height:100px;display:flex;flex-direction:column;justify-content:center}.big{font-size:clamp(25px,5vw,44px);font-weight:700;line-height:1.2;text-align:right}.ok{color:#79dbab}.warn{color:#f9ab97}label{font-size:13px;color:#647287}.two{display:flex;justify-content:space-between;align-items:center;gap:12px}input[type=range]{width:min(100%,400px)}table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px solid #e0e7f0;padding:10px;text-align:left;vertical-align:top}th{background:#f5f8fc}details{border-top:1px solid #e3e8ef;padding:12px 0}summary{cursor:pointer;font-weight:600}.muted{color:#657184;font-size:13px}.footer{margin-top:50px;color:#6b7687;font-size:13px}@media(max-width:800px){.shell{grid-template-columns:1fr}aside{position:static;height:auto}nav{display:flex;overflow:auto;margin-top:12px}nav button{white-space:nowrap;width:auto}main{padding:26px 18px}.grid{grid-template-columns:1fr}h2{font-size:26px}}</style><style>
+main,aside{min-width:0}
 .textbook-article{max-width:820px;margin:22px auto 35px;line-height:1.95;font-size:16px;color:#293747}
 .textbook-article h2{font-size:30px;line-height:1.35;letter-spacing:-.02em;margin:18px 0 18px}
 .textbook-article h3{font-size:22px;line-height:1.4;margin:40px 0 14px;padding-top:7px}
@@ -10,7 +11,7 @@
 .textbook-article code{background:#eaf0f6;padding:2px 4px;border-radius:4px;font-size:.91em}
 .textbook-article pre{white-space:pre;overflow-x:auto;padding:20px 22px;background:#162333;line-height:1.5;margin:22px 0 28px}
 .textbook-article pre code{padding:0;background:none;color:#ecf2fa;font-size:13px}
-.textbook-article table{display:block;overflow-x:auto;margin:24px 0 30px;background:#fff;border:1px solid #e1e8f0;border-radius:10px}
+.textbook-article table{display:block;max-width:100%;overflow-x:auto;margin:24px 0 30px;background:#fff;border:1px solid #e1e8f0;border-radius:10px}
 .textbook-article th,.textbook-article td{min-width:130px}
 .textbook-article ul,.textbook-article ol{padding-left:25px}
 .textbook-article li{margin-bottom:9px}
@@ -20,12 +21,13 @@
 .lesson-toc ol{columns:2;padding-left:24px;margin:10px 0 0}
 .lesson-toc li{break-inside:avoid;font-size:13px;margin:4px 0}
 .lesson-toc a{color:#245c98;text-decoration:none}
-@media(max-width:700px){.textbook-article{font-size:15px;line-height:1.87}.textbook-article h2{font-size:25px}.textbook-article h3{font-size:20px}.lesson-toc ol{columns:1}}
-@media print{aside,.buttons{display:none!important}.shell{display:block}main{max-width:none;padding:0}.textbook-article{max-width:none}.textbook-article pre{white-space:pre-wrap}}
-</style></head><body><div class="shell"><aside><h1>现代嵌入式<br/>产品工程</h1><small>产品构想 → 架构 → 实现 → 验证 → 交付<br/>HTML 阅读预览 · v0.2.0-preview</small><nav id="nav"><button class="active" data-section="home">课程首页</button><button data-section="outline">14 章课程总纲</button><button data-section="lesson">第 1 章 · 1.1（扩展稿）</button><button data-section="simulator">互动实验：三页 OLED</button><button data-section="hardware">硬件实验平台</button><button data-section="rules">教学与 Agent 规范</button></nav></aside><main>
-<section class="active" id="home"><span class="tag">课程定位</span><h2>从会调用驱动，到能把构想做成产品</h2><p class="lead">不是再学一轮孤立的 GPIO、I²C 或 FreeRTOS API，而是建立一套产品需求驱动、可验证、可迁移的嵌入式工程能力。</p><div class="grid"><div class="card"><b>产品驱动</b><p>所有技术选择都能追溯到明确的需求和验收条件。</p></div><div class="card"><b>原理与工业实现</b><p>从底层机制推导模块接口、并发行为和可靠性设计。</p></div><div class="card"><b>一个长期工程</b><p>按键、双 OLED、传感器、RTOS、LVGL 不断迭代和复用。</p></div><div class="card"><b>从原型到交付</b><p>覆盖架构、测试、故障恢复、PCB 和小批量验证。</p></div></div><div class="panel"><h3>目前完成情况</h3><p>当前已确认 14 章课程架构与教材编校规范；第 1.1 节扩展为可连续阅读的教材正文，第 1.2 节仍为未发布 Markdown 草稿。硬件设计、工程源码与测试证据尚未完成。</p><p class="muted">阅读端使用零依赖静态 HTML；Markdown 是可审查、可版本化的内容源。</p></div></section>
+@media(max-width:700px){.shell{grid-template-columns:minmax(0,1fr)}.textbook-article{font-size:15px;line-height:1.87}.textbook-article h2{font-size:25px}.textbook-article h3{font-size:20px}.lesson-toc ol{columns:1}}
+.lesson-pager{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;max-width:820px;margin:30px auto}.lesson-pager a{color:#245c98}
+@media print{aside,.buttons,.lesson-pager,.lesson-toc{display:none!important}section{display:block!important;animation:none;break-before:page}section:first-of-type{break-before:auto}.shell{display:block}main{max-width:none;padding:0}.textbook-article{max-width:none}.textbook-article pre{white-space:pre-wrap}}
+</style></head><body><div class="shell"><aside><h1>现代嵌入式<br/>产品工程</h1><small>产品构想 → 架构 → 实现 → 验证 → 交付<br/>HTML 阅读预览 · v0.3.0-preview</small><nav id="nav"><button class="active" data-section="home">课程首页</button><button data-section="outline">14 章课程总纲</button><button data-section="lesson">第 1 章 · 1.1（待审阅）</button><button data-section="lesson-1-2">第 1 章 · 1.2（待审阅）</button><button data-section="simulator">互动实验：三页 OLED</button><button data-section="hardware">硬件实验平台</button><button data-section="rules">教学与 Agent 规范</button></nav><noscript><style>section{display:block;animation:none;margin-bottom:60px}aside nav{display:none}</style><p>脚本未启用：以下按顺序展示全部正文；OLED 交互演示不可用。</p></noscript></aside><main>
+<section class="active" id="home"><span class="tag">课程定位</span><h2>从会调用驱动，到能把构想做成产品</h2><p class="lead">不是再学一轮孤立的 GPIO、I²C 或 FreeRTOS API，而是建立一套产品需求驱动、可验证、可迁移的嵌入式工程能力。</p><div class="grid"><div class="card"><b>产品驱动</b><p>所有技术选择都能追溯到明确的需求和验收条件。</p></div><div class="card"><b>原理与工业实现</b><p>从底层机制推导模块接口、并发行为和可靠性设计。</p></div><div class="card"><b>一个长期工程</b><p>按键、双 OLED、传感器、RTOS、LVGL 不断迭代和复用。</p></div><div class="card"><b>从原型到交付</b><p>覆盖架构、测试、故障恢复、PCB 和小批量验证。</p></div></div><div class="panel"><h3>目前完成情况</h3><p>当前已确认 14 章课程架构与教材编校规范；第 1.1、1.2 节均从 Markdown 生成连续教材正文预览，待学习者审阅。应用工程源码、硬件设计与产品测试证据尚未完成。</p><p class="muted">阅读端使用零依赖静态 HTML；Markdown 是可审查、可版本化的内容源。</p></div></section>
 <section id="outline"><span class="tag">课程总纲 v1.0</span><h2>四阶段 · 14 章</h2><div class="panel"><h3>阶段一：产品与软件基础（第 1–4 章）</h3><ol><li>从产品构想到工程需求</li><li>C 语言工程化与项目组织</li><li>时间、状态机与事件驱动</li><li>模块化架构、统一故障处理与测试</li></ol><h3>阶段二：硬件与驱动（第 5–7 章）</h3><ol start="5"><li>MCU 平台、GPIO 与硬件抽象</li><li>I²C、SPI 与显示设备驱动工程</li><li>中断、DMA、实时性与硬件调试</li></ol><h3>阶段三：RTOS 与可靠性（第 8–10 章）</h3><ol start="8"><li>RTOS 原理与任务设计</li><li>任务通信与共享资源管理</li><li>可靠性、故障管理与系统恢复</li></ol><h3>阶段四：交互与产品化（第 11–14 章）</h3><ol start="11"><li>LVGL 与图形交互系统</li><li>跨平台架构与成本优化</li><li>从原型机到可制造产品</li><li>完整产品集成、验收与交付</li></ol></div></section>
-<section id="lesson"><span class="tag">教材正文 · 第 1 章 / 第 1.1 节</span><details class="lesson-toc"><summary>本节目录 · 展开查看</summary><ol><li><a href="#lesson-heading-2">1.1.1 让一块 OLED 显示文字</a></li><li><a href="#lesson-heading-3">1.1.2 第二个需求到来时，原来的代码开始不够用了</a></li><li><a href="#lesson-heading-4">1.1.3 先写出用户经历，而不是先选库</a></li><li><a href="#lesson-heading-5">1.1.4 三种经常被混在一起的“状态”</a></li><li><a href="#lesson-heading-6">1.1.5 沿着一次用户操作，走一遍系统</a></li><li><a href="#lesson-heading-7">1.1.6 故障让架构的价值显现出来</a></li><li><a href="#lesson-heading-8">1.1.7 设计怎样从需求里长出来</a></li><li><a href="#lesson-heading-9">1.1.8 把“能工作”变成“知道为什么能工作”</a></li><li><a href="#lesson-heading-10">1.1.9 动手之前，先做一次设计判断</a></li><li><a href="#lesson-heading-11">1.1.10 回到开头：我们到底完成了什么？</a></li></ol></details><article class="textbook-article"><h2 id="lesson-heading-1">第 1 章 · 第 1.1 节：屏幕已经亮了，为什么产品还没有开始？</h2>
+<section id="lesson"><span class="tag">教材正文 · 第 1 章 / 第 1.1 节 · 待审阅</span><details class="lesson-toc"><summary>本节目录 · 展开查看</summary><ol><li><a href="#lesson-heading-2">1.1.1 让一块 OLED 显示文字</a></li><li><a href="#lesson-heading-3">1.1.2 第二个需求到来时，原来的代码开始不够用了</a></li><li><a href="#lesson-heading-4">1.1.3 先写出用户经历，而不是先选库</a></li><li><a href="#lesson-heading-5">1.1.4 三种经常被混在一起的“状态”</a></li><li><a href="#lesson-heading-6">1.1.5 沿着一次用户操作，走一遍系统</a></li><li><a href="#lesson-heading-7">1.1.6 故障让架构的价值显现出来</a></li><li><a href="#lesson-heading-8">1.1.7 设计怎样从需求里长出来</a></li><li><a href="#lesson-heading-9">1.1.8 把“能工作”变成“知道为什么能工作”</a></li><li><a href="#lesson-heading-10">1.1.9 动手之前，先做一次设计判断</a></li><li><a href="#lesson-heading-11">1.1.10 回到开头：我们到底完成了什么？</a></li></ol></details><article class="textbook-article"><h2 id="lesson-heading-1">第 1 章 · 第 1.1 节：屏幕已经亮了，为什么产品还没有开始？</h2>
 <blockquote>
 <p><strong>课程位置</strong>：第 1 章《从产品构想到工程需求》 · <strong>建议阅读</strong>：约 20 分钟（含思考） · <strong>先修知识</strong>：能看懂基本 C 函数调用即可 · <strong>实验条件</strong>：不需要开发板。<br/>
 <strong>本节要解决的问题</strong>：为什么一块能够显示字符串的 SSD1306，并不能自然地发展成一个有三个页面、实时数据和故障提示的产品？</p>
@@ -201,10 +203,197 @@ platform/
 <p><strong>本节检查点</strong>：如果有人现在提出“再加一个 Wi-Fi 页面”，你不必立刻知道怎么编写 Wi-Fi 代码；但应该先询问它对用户有什么作用、会修改哪类状态、和现有页面如何交互、断网时应出现什么行为。能提出这些问题，就说明你已经开始用产品工程的方法看待技术。</p>
 <hr/>
 <p><em>教学状态：正文扩写稿，尚未进行学习者审阅。代码均为概念示意，未宣称构建或实机通过。对应案例：C-01；下一节建立 REQ-001～REQ-008 的教学需求基线。</em></p>
-</article></section>
-<section id="simulator"><span class="tag">可交互演示 · PC</span><h2>三页面 OLED 仪表</h2><p>先验证产品需要什么行为，再决定使用 SSD1306、LVGL 或什么 MCU。此模拟器展示页面和数据状态，不模拟真实 I²C 时序。</p><div class="panel"><div class="oled"><div class="top"><span id="screenTitle">MONITOR</span><span id="pageNum">1/3</span></div><div class="body" id="oledBody"></div></div><div class="buttons" style="margin-top:18px"><button class="action" id="prev">上一页</button><button class="action" id="next">下一页</button><button class="action secondary" id="disconnect">模拟传感器断线</button></div><p><label for="temperature">模拟温度：<b id="temperatureValue">25.6°C</b></label><br/><input id="temperature" max="55" min="-10" step="0.5" type="range" value="25.6"/></p><p class="muted" id="simStatus"></p></div><div class="panel"><h3>这一实验说明什么？</h3><p>温度是设备模型，当前页是界面状态，传感器是否在线是数据有效性。驱动只需提供显示输出能力，不应决定页面切换、报警规则或采集策略。</p></div></section>
+</article><div class="lesson-pager"><a href="#lesson-1-2">下一节 · 1.2</a></div></section>
+<section id="lesson-1-2"><span class="tag">教材正文 · 第 1 章 / 第 1.2 节 · 待审阅</span><details class="lesson-toc"><summary>本节目录 · 展开查看</summary><ol><li><a href="#lesson-1-2-heading-2">1.2.1 两份看起来都做对了的仪表</a></li><li><a href="#lesson-1-2-heading-3">1.2.2 先把“更新及时”写到能判定</a></li><li><a href="#lesson-1-2-heading-4">1.2.3 屏幕上的 25.0°C 还代表现在吗</a></li><li><a href="#lesson-1-2-heading-5">1.2.4 故障期间的一次切页，怎样算成功</a></li><li><a href="#lesson-1-2-heading-6">1.2.5 六十个点，为什么不等于一分钟</a></li><li><a href="#lesson-1-2-heading-7">1.2.6 旋钮转到了 30.0°C，配置就保存了吗</a></li><li><a href="#lesson-1-2-heading-8">1.2.7 报警能说“正常”，需要什么证据</a></li><li><a href="#lesson-1-2-heading-9">1.2.8 把八条需求和测试接起来</a></li><li><a href="#lesson-1-2-heading-10">1.2.9 亲自走一遍“失去数据，再恢复”的过程</a></li><li><a href="#lesson-1-2-heading-11">1.2.10 换一个条件，独立写出可验收的约定</a></li></ol></details><article class="textbook-article"><h2 id="lesson-1-2-heading-1">第 1 章 · 第 1.2 节：让产品构想变成可以验收的需求</h2>
+<blockquote>
+<p><strong>课程位置</strong>：第 1 章《从产品构想到工程需求》 · <strong>建议阅读</strong>：约 25 分钟（含纸面推演） · <strong>先修知识</strong>：1.1 节中测量事实、设备配置与界面状态的区别 · <strong>实验条件</strong>：纸笔或文本编辑器，无需开发板。
+<strong>本节产出</strong>：沿用 <code>REQ-001</code>～<code>REQ-008</code> 的教学需求草案，为每条需求建立正常与边界测试，并把未决选择单独留下。时间、容量和温度范围均为<strong>教学假设</strong>，待学习者审阅；它们不是用户调研结论，也不是已经测得的硬件能力。</p>
+</blockquote>
+<h3 id="lesson-1-2-heading-2">1.2.1 两份看起来都做对了的仪表</h3>
+<p>上一节，我们把三页面仪表里的测量数据、报警配置和当前页面分开了。现在请设想，把同一句任务交给两位开发者：“显示实时温湿度，可以看历史、改报警阈值，传感器掉线后也能操作。”一周以后，他们各交回一个可以演示的程序。</p>
+<p>第一份程序每隔五秒更新屏幕，保存最近六十个温度点。转动旋钮时，报警阈值立即改变；退出设置页也不会撤销。传感器没有新读数时，它继续显示最后一次温度。作者解释说：“保留旧值至少还有参考作用。”第二份程序每秒更新屏幕，保存最近一分钟的数据；阈值要确认才生效，掉线后则把温度换成横线。作者也认为自己完成了任务。</p>
+<p>先别急着评价哪位作者写得更好。原来的任务没有规定“实时”是多久，没有说明“最近”按时间还是按点数计算，也没有说旋钮转到的新阈值何时生效。两个人的分歧，有一部分来自<strong>任务尚未给出共同的判断依据</strong>。即使交换他们使用的编程语言和显示库，这些分歧仍然存在。</p>
+<p>这就是本节要跨过的距离：从“我大概知道想要什么”，走到“另一个人能够据此判断某一次行为是否合格”。我们会继续使用同一台桌面环境仪表，把一句模糊承诺逐步写成有条件、有边界、有观察方法的需求。此时不需要会写驱动，也不需要提前学会 RTOS；需要的是愿意追问一句话没有说明的部分。</p>
+<h3 id="lesson-1-2-heading-3">1.2.2 先把“更新及时”写到能判定</h3>
+<p>桌面使用者看着 Monitor 页，收到一条新温度以后，希望屏幕及时变化。我们先尝试把“及时”改成“在一秒内”。这似乎已经可测试，但还有两个问题：从什么时候开始计时，看到什么才算结束？</p>
+<p>如果从传感器开始转换计时，要求就包括传感器本身的耗时；如果从应用收到有效测量结果计时，要求关注的是应用处理与显示路径。本阶段还没有真实传感器，因此我们采用后一个观察边界：<strong>在 Monitor 可见、且样本仍有效的条件下，从应用接收有效样本，到对应的新值在 Monitor 可见，间隔不超过 1000ms。</strong> 这就是 REQ-002 的一秒目标，计时起止点也成为约定的一部分。</p>
+<p>一条可验收的需求，通常需要说明所处条件、触发输入、预期结果以及允许的时间或数值边界。它不必套用某种固定句式，但不能让测试者重新发明这些信息。“温度变化后刷新”省略了计时起点；“调用刷新函数”只描述一个内部动作，无法保证用户看到了新温度。我们关心的结束点是可见结果。</p>
+<p>现在可以写一个足够小的例子：Monitor 已打开，旧值为 25.0°C；在模拟时刻 1000ms，应用收到一条 26.0°C 的有效样本。若新值在 1800ms 可见，耗时是 800ms，满足这个教学目标；若直到 2001ms 才可见，就超出了目标。恰好在 2000ms 可见仍然合格，因为“不超过”包含等号。这里的数字是纸面输入和预期结果，<strong>没有程序实际跑出这些日志</strong>。</p>
+<p>请先想一想：若 26.0°C 的样本到来时用户正在 Settings 页，能否要求屏幕立刻跳回 Monitor 来证明一秒刷新？这样做会打断用户，也与上一节区分页面和测量的目的冲突。REQ-002 约束 Monitor 的新值可见时间，不能单独推出自动跳页。隐藏页面重新打开时的首帧期限，以及连续快速到来的样本是否允许合并显示，需要另行约定，不能从“一秒内”中猜出来。</p>
+<p>这也说明，需求不是写得越长越好。我们只补充会影响验收结论的信息；尚未决定的策略则明确留下。眼下的最小成果是一段任何人都能复算的输入与输出，不是一套提前搭好的显示框架。</p>
+<h3 id="lesson-1-2-heading-4">1.2.3 屏幕上的 25.0°C 还代表现在吗</h3>
+<p>更新时限有了，但样本停止以后会怎样？假设在 0ms 收到一条有效的 25.0°C，此后再无新数据。到了 5000ms，屏幕仍写着 25.0°C。数字没有算错，却可能传达错误的信息：用户会把一个旧事实理解成当前事实。</p>
+<p>一种方案是永远保留最后读数，不作任何标记。它实现简单，也能保留参考值，但使用者无法判断读数年龄。另一种方案是保留旧值，同时清楚显示采样时间和“已过期”；还有一种方案是在当前值区域显示 <code>--.-</code>，明确提示数据不可用。本节沿用 REQ-003 的约束：<strong>超过三秒没有更新，就必须明确表示数据过期，不能继续把旧值当作当前有效读数。</strong> 保留旧值作为附加参考还是只显示横线，是呈现选择；这两种做法都不能隐藏过期状态。</p>
+<p>“三秒”还需要一个边界。本节将过期条件写为 <code>now_ms - last_sample_ms &gt; 3000</code>：距最后一次有效采样恰好 3000ms 时尚未因超时而过期，达到 3001ms 时则应判为过期。纸面推演使用不会倒退的模拟时间，所有样本按顺序输入。真实程序的计时范围、回绕处理和状态检查频率会在后续章节实现；本节不凭一个减法表达式宣称已经解决它们。过期状态到屏幕提示之间允许多少显示延迟，也应在接入实现前补齐。</p>
+<p>没有新样本和已经收到明确的失败结果，也要分开理解。前者可能是采集慢了，后者可能是一次读取已经失败。1.1 节要求读取失败时标记数据无效，不能为了凑足三秒而继续显示有效。三秒规则是在缺少更新时防止旧值无限有效的补充条件。它不能证明线缆已经断开，更不能直接诊断出哪颗器件损坏。在本阶段的用户界面中，两者都可以提示“数据不可用”，后续故障章节再细分原因。</p>
+<p>由此可以解释为什么不能用 <code>0.0°C</code> 代表错误。零度本身是合法温度；一旦它同时表示“没有测量”，报警判断和历史曲线就会把故障当成真实的低温。保留数值、有效性和采样时刻各自的含义，才有可能区分“测到了零度”“没有测到”和“很久以前测到过”。本节继续使用 1.1 的测量概念，不另造一份不同的数据结构。</p>
+<h3 id="lesson-1-2-heading-5">1.2.4 故障期间的一次切页，怎样算成功</h3>
+<p>现在让传感器在用户浏览 History 时失联。屏幕出现“数据不可用”，似乎已经处理了故障；但用户再按下一页，界面两秒以后才变化。离线提示是对的，页面服务却受到了牵连。这个例子把两条需求分开了：数据是否可信，以及数据出问题时用户能否继续操作。</p>
+<p>REQ-004 因此采用 200ms 的教学目标。为了能够复测，本节从应用收到一次已经识别好的“下一页”操作开始计时，到目标页面可见结束。这里不包括物理按键的电平采样和消抖时间；那段路径将在输入章节另行计入整机预算。测试者不能在一份报告里从按键触点计时，在另一份报告里从事件处理开始计时，再把结果直接比较。</p>
+<p>考虑两种候选设计。第一种在同一个循环里依次做采集和界面处理，只要采集操作能够在分配给它的时间内返回，再加上其他处理和显示耗时，仍可能满足 200ms。它的资源占用少、执行顺序容易跟踪，限制是每个阻塞点都要有明确上限。第二种把采集与界面安排在不同任务里，可以让界面等待采集的机会减少，但会增加任务栈、共享数据和调度分析的工作；如果两者又争用一个被长期占据的资源，拆成任务仍可能卡住。</p>
+<p>需求能够排除“无限等到传感器成功才处理输入”的方案，却没有足够证据替我们决定任务数量。后续必须测量各段耗时，证明总响应满足目标。此时把 FreeRTOS 写进需求，只会掩盖尚未完成的分析。</p>
+<p>再回看 REQ-001 的“切页不改变测量数据”。它要检查的是切页操作没有重置测量、历史和已生效阈值；它不要求现实中的温度在浏览期间停止变化。纸面测试时可以暂停样本输入，让数据保持不变，专门观察切页的影响。进入真实并发系统后，则要区分数据因正常采集而变化，还是被页面初始化意外清空。</p>
+<h3 id="lesson-1-2-heading-6">1.2.5 六十个点，为什么不等于一分钟</h3>
+<p>我们回到第二位开发者的历史页。他保存最近一分钟的数据，第一位保存最近六十个点。如果每秒恰好收到一点，两者看起来相同；一旦采样暂停十秒，或者每两秒才有一个样本，结果就不同了。</p>
+<p>REQ-005 选择的是<strong>最多保存最近六十个有效采样点</strong>，而不是固定一分钟。这个选择让本阶段可以先学习有限容量的数据保留规则，不必同时引入时间窗口重采样。代价也很具体：曲线不能据此标成“最近一分钟”。若真实产品要求固定时间跨度，就需要补充时间轴和缺测段的规则，不能靠修改图注假装已经满足。</p>
+<p>纸面上先把样本命名为 S1 到 S61。输入 S1 后，历史只有一个点；输入到 S60 时刚好占满；再输入 S61，预期保留 S2 到 S61，顺序不变。编号用于辨认样本，不是温度值。中间插入一个明确无效的样本，不应把它当成第六十二个有效点，也不应让真实的零度被排除。</p>
+<p>设备刚启动、还没有有效样本时，History 应显示“无历史记录”。先画一条好看的固定曲线可以帮助设计版面，却不能作为采集成功的证据。当前 HTML 中的旧 OLED 演示就是页面与状态概念演示：历史曲线为固定示意，设置阈值不能真正提交。阅读时可以用它观察断线后还能切页，但不能拿它验收这八条需求。即使浏览器完全不运行脚本，上面的 S1～S61 推演也足以表达历史保留规则。</p>
+<h3 id="lesson-1-2-heading-7">1.2.6 旋钮转到了 30.0°C，配置就保存了吗</h3>
+<p>在 Settings 页中，屏幕显示的数字可能只是一个正在编辑的值。假设原来生效的阈值是 28.0°C，用户转到 30.0°C 后选择取消。若报警逻辑已经在旋转过程中使用 30.0°C，取消操作就没有恢复产品原来的行为。REQ-006 中的“确认才更新”因此要求我们始终分清编辑值和已生效值。</p>
+<p>本节采用 0.0～50.0°C、步长 0.5°C 的教学范围。用 28.0°C 开始编辑，增加一次得到 28.5°C，取消后生效值仍是 28.0°C；重新编辑到 28.5°C 并确认，才应更新生效值。测试上下界时，不只看 0.0 和 50.0 能否使用，还要尝试向范围之外调整，检查生效值不会越界。越界操作是停在端点、拒绝并提示，还是采用其他交互，原需求没有冻结，不能把某一个按钮动画当成唯一合格实现。</p>
+<p>这里出现了另一个容易混淆的词：“提交”。用户确认编辑，应用接受新阈值，存储器成功持久化，是三个可能分开的时刻。REQ-008 所说的“最近一次成功提交”，需要有能够用于重启恢复的成功证据；仅仅在屏幕上闪出“已保存”不够。</p>
+<p>假设 28.0°C 曾经保存成功，用户后来确认 30.0°C，但这一次写入失败。可以选择只有持久化成功才让新值生效，也可以允许 30.0°C 本次运行暂时生效、同时明确提示未保存。前一种方案更容易让运行值和重启值一致；后一种可以继续接受临时设置，却要求界面与测试区分“已生效”和“已持久化”。<strong>这份教学需求尚未选择这项失败策略，本节将它列为待决项。</strong> 我们不能一边声称需求已经冻结，一边由实现者静默选择。</p>
+<p>对已经决定的正常路径，验收仍然很明确：模拟存储确认 28.0°C 保存成功，重启后读回 28.0°C。对损坏配置，至少能检查“不能把未通过完整性检查的内容无条件当作合法配置使用”。默认阈值是多少、是否要求用户重新确认、怎样显示恢复失败，仍需产品决定。记录这些空白，可以阻止开发者把一个随手写的默认值变成无来源的产品承诺。</p>
+<h3 id="lesson-1-2-heading-8">1.2.7 报警能说“正常”，需要什么证据</h3>
+<p>当温度达到或超过阈值时报警，听起来已经没有歧义。把生效阈值设为 30.0°C，依次输入 29.5、30.0、30.5°C 三个有效样本，就能检查 REQ-007 的比较边界。等于阈值也要触发；测试里只有明显偏高的 40.0°C，发现不了把“大于等于”错写成“大于”的问题。</p>
+<p>接下来，在显示高温之后注入无效样本。如果程序把测量值清零，再用零度参与比较，报警会看起来恢复正常。这种“恢复”没有新的有效温度作为依据。REQ-007 因而还要求无效测量不能被判作正常温度；测试者至少应观察到“测量不可用，不能据此判定正常”的状态。</p>
+<p>这不等于本节已经决定了完整的报警状态机。高温报警在数据失效后是否锁存、恢复后如何解除、确认新阈值后何时重新判断、是否需要蜂鸣器和迟滞，都需要进一步的行为选择。我们现在只确定以下边界：有效值达到阈值时应产生高温报警，缺少可信数据不能成为“温度正常”的证据。也不把桌面仪表里的软件提示扩展成真实设备的安全保护承诺。</p>
+<p>由这一次故障可以看出，测试既能检查代码，也能发现需求尚未闭合。若测试者不知道应该观察什么，先补充产品决定；若双方已经同意预期结果，程序却表现不同，再定位实现问题。把两者混成一句“测试没过”，会让团队反复修改代码，却始终没有共同目标。</p>
+<h3 id="lesson-1-2-heading-9">1.2.8 把八条需求和测试接起来</h3>
+<p>经过前面的推演，我们可以把原有编号整理成一张查阅表。它用于定位具体约束，不代替前文关于计时、失效和未决策略的解释。所有量化数值均为教学假设；这些需求尚未成为经过人工验收的正式产品基线。</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>当前需求草案的可观察行为</th>
+<th>必须一起阅读的边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQ-001</td>
+<td>Monitor、History、Settings 三页循环切换；切页不重置测量、历史或已生效阈值</td>
+<td>隔离切页副作用，不冻结正常采集；物理输入映射待后续细化</td>
+</tr>
+<tr>
+<td>REQ-002</td>
+<td>Monitor 可见且样本仍有效时，接收有效样本后不超过 1000ms 显示新值</td>
+<td>等号合格；隐藏页面首帧与样本合并策略待决</td>
+</tr>
+<tr>
+<td>REQ-003</td>
+<td>连续超过 3000ms 无更新时判为过期，明确表示无效，旧值不得冒充当前值</td>
+<td>严格大于 3000ms 才超时；明确失败不能等到超时才标无效</td>
+</tr>
+<tr>
+<td>REQ-004</td>
+<td>传感器离线时仍能切页；已识别操作进入应用后，不超过 200ms 使目标页可见</td>
+<td>不包含物理按键消抖耗时；不规定任务数量</td>
+</tr>
+<tr>
+<td>REQ-005</td>
+<td>最多保留最近 60 个有效温度采样点，满时丢弃最旧点</td>
+<td>无数据明确提示；60 点不等于 60 秒</td>
+</tr>
+<tr>
+<td>REQ-006</td>
+<td>阈值在 0.0～50.0°C 内按 0.5°C 编辑，取消不生效，确认才更新</td>
+<td>编辑值与生效值分开；越界提示方式、持久化失败策略待决</td>
+</tr>
+<tr>
+<td>REQ-007</td>
+<td>有效温度达到或超过生效阈值时产生高温报警；无效测量不能被判为温度正常</td>
+<td>不擅定锁存、迟滞或硬件保护行为</td>
+</tr>
+<tr>
+<td>REQ-008</td>
+<td>重启恢复最近一次成功持久化提交的阈值；损坏配置不能无条件应用</td>
+<td>默认值、损坏恢复和保存失败策略尚未冻结</td>
+</tr>
+</tbody>
+</table>
+<p>现在为每条需求找一个正常例子，再找一个最容易暴露误解的边界。下表中的 TEST 编号是后续测试资产的索引，<strong>当前只有测试计划，没有同名可执行程序，也没有通过结果</strong>。刷新、报警等路径也各有测试索引，避免只验证容易演示的页面切换。</p>
+<table>
+<thead>
+<tr>
+<th>需求 / 测试索引</th>
+<th>正常路径的输入与预期</th>
+<th>边界或失败路径的输入与预期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQ-001 / TEST-UI-001</td>
+<td>初始 Monitor，连续 12 次“下一页”，每次按三页顺序循环；冻结采样时设备数据不变</td>
+<td>Settings 再切一次回到 Monitor；离线状态下同样不清空已存数据</td>
+</tr>
+<tr>
+<td>REQ-002 / TEST-UI-002</td>
+<td>使用 1.2.2 的时间线，1000ms 收样、1800ms 可见，应判满足目标</td>
+<td>2000ms 可见合格，2001ms 可见超时；样本保持有效且 Monitor 可见</td>
+</tr>
+<tr>
+<td>REQ-003 / TEST-FAULT-001</td>
+<td>0ms 收到有效样本，1000ms 再收有效样本，样本年龄应从新样本重新计算</td>
+<td>独立重置到 0ms 最后一次有效样本：3000ms 未超时，3001ms 过期；明确无效输入不得维持有效</td>
+</tr>
+<tr>
+<td>REQ-004 / TEST-UI-003</td>
+<td>离线时应用收到切页操作，150ms 后目标页可见，应判满足目标</td>
+<td>200ms 合格、201ms 超时；这只判断给定输入记录，尚无设备性能结论</td>
+</tr>
+<tr>
+<td>REQ-005 / TEST-DATA-001</td>
+<td>S1～S3 三个有效样本按序保留；空历史显示无记录</td>
+<td>S1～S61 后保留 S2～S61；插入无效样本不增加有效点数，合法零度仍应入列</td>
+</tr>
+<tr>
+<td>REQ-006 / TEST-CONFIG-001</td>
+<td>28.0 编辑为 28.5 后取消仍为 28.0；重新编辑并确认才变为 28.5</td>
+<td>0.0、50.0 合法；越界输入不得让生效阈值超出范围，提示方式待决</td>
+</tr>
+<tr>
+<td>REQ-007 / TEST-ALARM-001</td>
+<td>阈值 30.0，有效值 29.5 无高温触发，30.5 产生高温报警</td>
+<td>30.0 同样触发；随后无效输入不能被报告为温度正常，锁存细节待决</td>
+</tr>
+<tr>
+<td>REQ-008 / TEST-CONFIG-002</td>
+<td>模拟存储报告阈值 28.0 成功提交，重启后恢复 28.0</td>
+<td>注入损坏配置，不得直接采用；保存失败后的具体运行值和恢复策略暂不能做完整通过判定</td>
+</tr>
+</tbody>
+</table>
+<p>表格使遗漏变得可见：如果需求有编号却找不到测试，暂时只能说“已写下”；如果测试里充满“应该合理处理”，就还没有可观察的预期结果。REQ-008 的失败路径尤其提醒我们，<strong>存在测试计划，不等于需求已经全部决定，更不等于实现已经通过</strong>。</p>
+<p>将来落地时，TEST-UI 系列会观察界面控制与渲染边界，TEST-DATA 关注历史数据，TEST-CONFIG 关注编辑与存储，TEST-FAULT 和 TEST-ALARM 关注测量有效性及报警判断。这些是职责候选，不是新冻结的文件名或函数接口。它们分别复用案例 C-01，并衔接 C-02 的输入识别与 C-04 的故障处理；实现仍按既有第 2～4 章逐步建立 PC 工程，硬件部分在后续章节验证。</p>
+<h3 id="lesson-1-2-heading-10">1.2.9 亲自走一遍“失去数据，再恢复”的过程</h3>
+<p>请新建一份纸面或文本记录，列出时刻、输入、测量是否可用、当前页、历史点数、已生效阈值六项。初始阈值取已经成功保存的 30.0°C，历史为空，当前页为 Monitor。这些初始条件也要写下，否则别人无法复现你的推演。</p>
+<p>在 0ms 输入一条有效的 25.0°C，给它编号 S1。记录最新样本可用、历史包含 S1，并写下显示最迟应在 1000ms 更新。之后只停止样本输入，不要同时注入明确失败；这样才能单独检查三秒过期规则。在 3000ms 和 3001ms 各记一次判断，后一时刻的数据应被判为过期，历史中的 S1 仍然存在。历史事实与当前读数的有效性不是同一件事。</p>
+<p>在 3200ms 输入“下一页”，目标是 History，按 REQ-004 的教学预算，最迟应在 3400ms 可见。再次切到 Settings，把编辑值调整为 31.0°C，然后取消，确认生效阈值仍为 30.0°C。在 4000ms 注入有效样本 S2，温度为 26.0°C，记录数据恢复可用，历史变成 S1、S2，当前页面不因采样而重置。这里没有选择保存失败策略，因为这一轮根本没有提交新配置。</p>
+<p>核对时，先找最早发生分歧的一行。如果你在 3000ms 就判为超时，是没有保留严格大于的边界；如果用零度替代过期读数，是混淆了数值与可信性；如果恢复数据时回到 Monitor，是让采集事件额外修改了页面状态。定位到第一处分歧，比只看最后一屏是否漂亮更有用。</p>
+<p>这项练习是 <code>CONCEPT</code> 层级的需求推演。当前仓库没有完整应用模拟器或固件测试命令，因此这里不提供虚构的运行命令和日志。以后同一份时间线可以输入带可控时钟的 PC 测试，记录真实断言与耗时；只有执行后才有相应的测试证据。浏览器里的一次鼠标点击，则不能证明真实按键消抖、I²C 超时或整机的 200ms 响应。</p>
+<h3 id="lesson-1-2-heading-11">1.2.10 换一个条件，独立写出可验收的约定</h3>
+<p>现在保留这个仪表，只改变一个情境：用户正把阈值从 30.0°C 编辑到 32.0°C，尚未确认，此时收到一条有效的 31.0°C，随后下一次测量失败。请先独立完成，不急着寻找完整代码。</p>
+<p>写出你认为应观察到的行为，说明报警判断使用哪一个值、界面是否保留编辑内容，以及用户此时还能做哪些操作。再增加一次“保存失败”的变化，为 1.2.6 中保留的待决策略提出一个有理由的候选决定。它是你的练习提案，不能直接覆盖教材的正式要求。</p>
+<p>交给另一位读者的答案至少要有一个明确初始状态、一次正常输入、一次失败输入和各自的预期结果；涉及时间时写清计时起止点；涉及保存时区分编辑、生效和持久化。对方应能按你的描述复算一次正常路径和一次边界路径，而不必追问“这个时候到底算保存了吗”。若答案要求修改 SSD1306 的总线发送函数才能决定保存规则，再回到 1.1 检查职责边界。</p>
+<p>自查时可以先确认一件确定的事：未确认的 32.0°C 不能悄悄替代已经生效的 30.0°C，因此有效的 31.0°C 足以触发高温条件。测量失败以后，不能仅因为缺少温度就宣布温度正常。编辑画面是否被报警打断、报警是否锁存、保存失败后使用哪个运行值，则需要你提出一致且可测试的规则；此处不替你选完整方案。</p>
+<p>最后，回看开头两份“都做对了”的程序。现在我们能指出某一行为对应哪个 REQ、用哪个 TEST 检查，也能明确说出哪些地方还没有产品决定。能写出编号只是第一步；能解释边界、发现未决项，并在新情境下独立写出测试，才说明需求开始具有工程用途。若仍卡住，请记录具体分歧属于概念、职责设计还是迁移判断，留作学习反馈，不把“看过本节”自动记为已经掌握。</p>
+<p>后续第 1 章会继续把这些行为整理为状态与事件；第 2 章再把需要记住的信息和输入输出放进可构建的工程。我们带到下一步的是带着明确空白的需求草案，而非已经通过验证的完整产品规格。</p>
+<hr/>
+<p><em>教学状态：1.2 正文重写草稿，待学习者审阅。关联需求 REQ-001～REQ-008；案例 C-01，衔接 C-02/C-04。正文仅作 CONCEPT 推演，无应用 BUILD/UNIT/SIM/HIL/SOAK 证据。硬件、SDK 和 API 版本均未在本节冻结。目标用户、真实环境范围、湿度历史、报警器件、实际时限、重启页面、隐藏页首帧、过期提示延迟、保存失败、配置损坏恢复及报警解除策略仍待决定。编辑说明与检查记录位于 docs/reviews/ch01-lesson02.md。</em></p>
+</article><div class="lesson-pager"><a href="#lesson">上一节 · 1.1</a></div></section>
+<section id="simulator"><span class="tag">可交互演示 · PC</span><h2>三页面 OLED 仪表</h2><p>先验证产品需要什么行为，再决定使用 SSD1306、LVGL 或什么 MCU。此演示仅展示页面切换和数据有效性；历史曲线是固定示意，设置页不支持实际编辑、确认或保存。它不实现 1.2 的完整需求，不用于验收采样、存储、报警或响应时限，也不模拟真实 I²C 时序。</p><div class="panel"><div class="oled"><div class="top"><span id="screenTitle">MONITOR</span><span id="pageNum">1/3</span></div><div class="body" id="oledBody"></div></div><div class="buttons" style="margin-top:18px"><button class="action" id="prev">上一页</button><button class="action" id="next">下一页</button><button class="action secondary" id="disconnect">模拟传感器断线</button></div><p><label for="temperature">模拟温度：<b id="temperatureValue">25.6°C</b></label><br/><input id="temperature" max="55" min="-10" step="0.5" type="range" value="25.6"/></p><p class="muted" id="simStatus"></p></div><div class="panel"><h3>这一实验说明什么？</h3><p>温度是设备模型，当前页是界面状态，传感器是否在线是数据有效性。驱动只需提供显示输出能力，不应决定页面切换、报警规则或采集策略。</p></div></section>
 <section id="hardware"><span class="tag">硬件平台 · 规划中</span><h2>可更换 MCU 的实验底板</h2><p>统一外设底板，独立 ESP32-WROOM 和 RP2040 转接板。第一阶段在 PC 运行，硬件从第 5 章正式引入。</p><div class="panel"><table><thead><tr><th>模块</th><th>器件 / 教学用途</th></tr></thead><tbody><tr><td>输入</td><td>按钮、EC11 编码器：消抖和事件</td></tr><tr><td>I²C</td><td>SHT31、MCP23017、TCA9548A、双 SSD1306：总线拓扑与驱动</td></tr><tr><td>SPI</td><td>W25Q 系列 NOR：读写、擦除、超时与持久化</td></tr><tr><td>可靠性</td><td>INA226、MOSFET 小负载、独立看门狗：故障与恢复</td></tr><tr><td>扩展</td><td>RTC、FRAM、RS-485、SD、音频、WS2812：选修实验</td></tr><tr><td>主控</td><td>现有 ESP32-WROOM；RP2040 作跨平台验证</td></tr></tbody></table><p class="muted">这是设计目标清单，尚未冻结 GPIO、连接器引脚、原理图、电源预算或 BOM；需要依据具体芯片资料校核。</p></div></section>
 <section id="rules"><span class="tag">Agent 协作规则</span><h2>让教材能跨 Agent 延续</h2><div class="panel"><h3>每节固定教学闭环</h3><p><b>工程需求 → 底层原理 → 设计推导 → 最小实现 → 工业实现 → 故障实验 → 验收 → 独立迁移</b></p><h3>三类 Agent 职责</h3><p><b>课程讨论：</b>分析新想法，只形成提案；不默认改正式总纲。</p><p><b>章节编写：</b>读取总纲、教学规范、前置章节和实验代码；不能自行修改全局目标。</p><p><b>学习答疑：</b>记录已掌握和卡住的概念；教材缺陷形成修订建议。</p><h3>正式变更规则</h3><p>所有新想法先变成 CCP 提案，标记 proposed / accepted / deferred / rejected；只有批准后才修改正式课程文件。源码与章节内容要进行相互验证。</p><p>每个实验应提供独立复现步骤，区分“编译成功”“功能通过”“真正掌握”。</p><h3>教材正文质量要求</h3><p>以完整案例和连贯因果推导为主体；不能把教学检查表当作正文，不能只列出“需求、架构、验证”等标题。章节须经过连续阅读审查和独立迁移练习审查。</p></div></section>
-<div class="footer">HTML 阅读预览 v0.2.0-preview · 1.1 来源：chapters/ch01-lesson01.md。正文尚待学习者审阅与实验验收。</div></main></div><script>
-const nav=document.querySelectorAll('nav button');const sections=document.querySelectorAll('main section');nav.forEach(b=>b.addEventListener('click',()=>{nav.forEach(n=>n.classList.toggle('active',n===b));sections.forEach(s=>s.classList.toggle('active',s.id===b.dataset.section));window.scrollTo(0,0)}));let page=0,online=true,temp=25.6;const titles=['MONITOR','HISTORY','SETTINGS'];function render(){document.querySelector('#screenTitle').textContent=titles[page];document.querySelector('#pageNum').textContent=`${page+1}/3`;document.querySelector('#temperatureValue').textContent=temp.toFixed(1)+'°C';const out=document.querySelector('#oledBody');if(page===0)out.innerHTML=`<div class="two"><span>Temperature</span><span>${online?'LIVE':'OFFLINE'}</span></div><div class="big">${online?temp.toFixed(1)+'°C':'--.-°C'}</div><span class="${online?'ok':'warn'}">${online?'SENSOR ONLINE':'SENSOR OFFLINE'}</span>`;else if(page===1)out.innerHTML='<div>Temperature history</div><svg width="100%" height="85" viewBox="0 0 400 85"><path d="M0 69 L40 61 L80 71 L120 40 L160 51 L200 22 L240 47 L280 31 L320 57 L360 23 L400 38" fill="none" stroke="#d9f0ff" stroke-width="3"/></svg>';else out.innerHTML='<div>Alarm threshold</div><div class="big">30.0°C</div><span>Encoder to adjust</span>';document.querySelector('#disconnect').textContent=online?'模拟传感器断线':'恢复传感器';document.querySelector('#simStatus').textContent=online?'数据有效；界面和设备状态独立':'数据无效；仍可切换三个页面，符合本节的目标行为';}document.querySelector('#prev').addEventListener('click',()=>{page=(page+2)%3;render()});document.querySelector('#next').addEventListener('click',()=>{page=(page+1)%3;render()});document.querySelector('#disconnect').addEventListener('click',()=>{online=!online;render()});document.querySelector('#temperature').addEventListener('input',e=>{temp=Number(e.target.value);render()});render();
+<div class="footer">HTML 阅读预览 v0.3.0-preview · 1.1、1.2 来源：chapters/ch01-lesson01.md、ch01-lesson02.md。正文尚待学习者审阅；阅读器检查不等于应用或硬件验收。</div></main></div><script>
+const nav = document.querySelectorAll('nav button');
+const sections = document.querySelectorAll('main > section');
+function showHashTarget() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { id = ''; }
+  const target = document.getElementById(id);
+  const section = target?.closest('main > section');
+  const selected = section?.id || 'home';
+  nav.forEach(button => button.classList.toggle('active', button.dataset.section === selected));
+  sections.forEach(item => item.classList.toggle('active', item.id === selected));
+  if (section && target !== section) target.scrollIntoView();
+  else window.scrollTo(0, 0);
+}
+nav.forEach(button => button.addEventListener('click', () => {
+  if (location.hash === '#' + button.dataset.section) showHashTarget();
+  else location.hash = button.dataset.section;
+}));
+window.addEventListener('hashchange', showHashTarget);
+showHashTarget();
+let page=0,online=true,temp=25.6;const titles=['MONITOR','HISTORY','SETTINGS'];function render(){document.querySelector('#screenTitle').textContent=titles[page];document.querySelector('#pageNum').textContent=`${page+1}/3`;document.querySelector('#temperatureValue').textContent=temp.toFixed(1)+'°C';const out=document.querySelector('#oledBody');if(page===0)out.innerHTML=`<div class="two"><span>Temperature</span><span>${online?'LIVE':'OFFLINE'}</span></div><div class="big">${online?temp.toFixed(1)+'°C':'--.-°C'}</div><span class="${online?'ok':'warn'}">${online?'SENSOR ONLINE':'SENSOR OFFLINE'}</span>`;else if(page===1)out.innerHTML='<div>Temperature history</div><svg width="100%" height="85" viewBox="0 0 400 85"><path d="M0 69 L40 61 L80 71 L120 40 L160 51 L200 22 L240 47 L280 31 L320 57 L360 23 L400 38" fill="none" stroke="#d9f0ff" stroke-width="3"/></svg>';else out.innerHTML='<div>Alarm threshold</div><div class="big">30.0°C</div><span>Encoder to adjust</span>';document.querySelector('#disconnect').textContent=online?'模拟传感器断线':'恢复传感器';document.querySelector('#simStatus').textContent=online?'数据有效；界面和设备状态独立':'数据无效；仍可切换三个页面。仅为概念演示，不是完整需求验收';}document.querySelector('#prev').addEventListener('click',()=>{page=(page+2)%3;render()});document.querySelector('#next').addEventListener('click',()=>{page=(page+1)%3;render()});document.querySelector('#disconnect').addEventListener('click',()=>{online=!online;render()});document.querySelector('#temperature').addEventListener('input',e=>{temp=Number(e.target.value);render()});render();
 </script></body></html>
