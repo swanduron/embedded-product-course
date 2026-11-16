@@ -47,7 +47,7 @@ Git 与 rsync 的建议用法参见：**`docs/git-and-publishing.md`**。Git 管
 # how to start?
 
 ```
-请以 ~/Documents/projects/embedded-product-course 为工作目录。先读取 README 和 governance 下的全部规范，并检查当前 Git 状态。以后以这个目录作为《现代嵌入式产品工程》的唯一工作仓库。
+请以 ~/Documents/project/embedded-product-course 为工作目录。先读取 README 和 governance 下的全部规范，并检查当前 Git 状态。以后以这个目录作为《现代嵌入式产品工程》的唯一工作仓库。
 所有教材修改都必须遵守教学规范，以 Markdown 为正文来源，修改后重新生成 HTML、验证结果并检查 Git Diff。
 不要擅自修改已经确认的课程架构。未经我同意，不要直接 push 到 GitHub。
 ```
