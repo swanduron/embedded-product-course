@@ -1,12 +1,12 @@
 # 多 Agent 运行规程与上下文加载 v1.3
 
 ## 唯一权威与层级
-正式发布的仓库文件为唯一课程事实来源：`vision.md`（价值与原则） > `curriculum.md`（结构与目标） > `decisions.md` 及 ADR（已批准决策） > 已审核章节/接口契约 > 具体实验源码。聊天及 AI 记忆只是讨论输入，不可替代已发布基线。若存在冲突，停止擅改并产生疑问/提案。
+正式发布的仓库文件为唯一课程事实来源：`vision.md`（价值与原则） > `curriculum.md`（结构与目标） > `decisions.md`（已确认课程决策）、ADR 分项状态和假设登记 > 已审核章节/接口契约 > 具体实验源码。聊天及 AI 记忆只是讨论输入，不可替代已发布基线。若存在冲突，停止擅改并产生疑问/提案。
 
 ## 新 Agent 启动时的必读顺序
 1. `README.md`：版本、目录及当前发布状态。
-2. `governance/vision.md`、`learning-contract.md`、`editorial-style.md`、`curriculum.md`。
-3. `governance/agent-operations.md`、`decisions.md`、`release-policy.md`。
+2. `governance/vision.md`、`project-model.md`、`curriculum.md`、`learning-contract.md`、`editorial-style.md`。
+3. `governance/agent-operations.md`、`decisions.md`、`assumptions-and-open-questions.md`、ADR-0001 顶部的分项状态索引、`release-policy.md`。
 4. 所属章节、上一阶段依赖和 `cases/` 相关案例（如存在）。
 5. 实验目录的 README、构建版本、验证记录（如存在）。
 6. 学习/硬件反馈（仅与当前任务相关的部分）。
@@ -41,3 +41,8 @@ Agent 必须在工作摘要中列出读取的基线版本和缺失文件，不�
 
 ## 审核与发布
 完成草稿 → **独立正文连续阅读审查（详见 editorial-style.md）** → 检查契约、术语、先修 → 实验构建/测试 → 教学审查 → 人工批准 → 更新内容源 → 生成 HTML → 检查链接与交互 → 标记发布。任何一项失败则保留 draft，不宣称已发布。
+
+
+## 写作与答疑的不同任务标准
+
+写作 Agent 以产品困难推动章节叙事、工程推导和可验证的增量；答疑 Agent 以学习者当前具体困难为中心，直接解释原理并协助小实验与迁移，不要求每次重新确认产品定位。工作模式和可复制任务见 `../docs/agent-workflows.md`。ADR 中的建议不应无声升级为已批准决定。

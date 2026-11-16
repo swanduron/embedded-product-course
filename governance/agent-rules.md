@@ -3,6 +3,7 @@
 本文件是短入口，不是完整规范。**必须同时阅读**：
 
 - `vision.md`：愿景、学习者需求、不可妥协的原则与课程边界。
+- `project-model.md`：四层语义，防止产品工程主线退化为技术清单。
 - `learning-contract.md`：每节教学契约、四级掌握与质量门槛。
 - `editorial-style.md`：**必须遵守的教材叙事与反提纲化规范**，正文需通过连续阅读检查。
 - `agent-operations.md`：多 Agent 职责、上下文加载、输入输出契约与审查。
@@ -11,6 +12,7 @@
 - `feedback-and-progress.md`：学习反馈如何驱动课程修订。
 - `case-and-traceability.md`：主线案例、需求与测试追踪。
 - `curriculum.md`、`decisions.md`：14 章结构与已批准方向。
+- `assumptions-and-open-questions.md`、ADR-0001 状态索引：教学假设、未决问题、历史答复，不得自行批准。
 
 ## 单句总原则
 **从产品构想出发，通过行为需求、原理、架构、实现和验证完成可维护的产品；不能把运行成功的驱动 Demo 当作课程终点。**

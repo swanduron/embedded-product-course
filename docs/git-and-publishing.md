@@ -1,6 +1,6 @@
 # Git 协作与 HTML 发布工作流
 
-这份文档假定你将整个 `embedded-product-course/` 目录放在自己的电脑或有权限的服务器上。
+本项目的唯一 Git 工作目录：`~/Documents/project/embedded-product-course`。以课程负责人明确指定及实际存在的目录为准，不使用 `Documents/projects` 路径。
 
 ## 哪个地方是真正的教材？
 
@@ -10,7 +10,7 @@
 - `index.html`：生成的阅读预览，便于离线打开。不要手工修正文；修改 Markdown 后重新运行脚本。
 - ZIP 文件：交付快照，适合转交他人，不是持续更新仓库的方式。
 
-## 首次使用 Git
+## 仅在创建新仓库时初始化 Git（现有仓库不要重复执行）
 
 ```bash
 cd embedded-product-course
@@ -86,3 +86,8 @@ rsync -av index.html YOUR_USER@YOUR_HOST:/path/to/course-site/
 4. 审核 Git Diff，按任务需要保存本地提交；对重大课程方向变化先执行 CCP 流程。
 5. 经仓库所有者明确同意后，再执行对应的远端 push 或 rsync 发布。
 6. 不把 Git push 成功等同于“自动更新远端 HTML 网站”，除非另行配置并验证了发布流水线。
+
+
+## 通过更新包导入治理修改
+
+先运行 `git status`，保存正在进行的工作，再将 ZIP 内 `embedded-product-course/` 的文件**合并**到已有仓库，保留原 `.git/`。不要把更新包当成新的仓库历史；检查 `git diff`、未跟踪的新文件、HTML 构建结果，再由仓库所有者决定是否 commit/push。
