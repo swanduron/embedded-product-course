@@ -29,21 +29,29 @@ git push -u origin main
 
 > `YOUR_GIT_REMOTE_URL` 是占位符；仓库地址、SSH 密钥及权限需要你自己配置。不要把 API key、密码或设备私钥提交到仓库。
 
-## 多 Agent 以后怎么协作
+## 日常协作：只使用 main
 
-主分支 `main` 保留已确认的教材基线；写作 Agent 只在功能分支完成任务，例如 `chapter/ch01-expand-1-1`。审查后再合并。不要让几个 Agent 同时无协调地直接写 `main`。
+仓库所有者于 2026-11-16 确认：只保留并使用 `main`，日常修改、构建和验证直接在 `main` 进行。Agent 不自动创建功能分支、额外工作树或 PR；只有仓库所有者明确要求时才例外。
+
+开始任务时检查 Git 状态和提交关系。工作区干净且本地主分支可快进时，可以同步远端已有提交：
 
 ```bash
-git switch -c chapter/ch01-expand-1-1
-# 编辑 Markdown 和相关测试
-python3 scripts/build_site.py
-git diff --check
-git add chapters/ site/ index.html governance/ scripts/
-git commit -m "Expand chapter 1.1 into textbook narrative"
-# 经审查后再通过 PR 或人工合并到 main
+git status --short --branch
+git switch main
+git pull --ff-only
 ```
 
-多个 Agent 应各自使用独立的工作树或分支。发生冲突时必须先查看差异并解决，不能用覆盖整个文件的方式跳过审查。**普通聊天没有自动访问你本地 Git 仓库的能力**；Agent 要在能访问代码仓库的环境中执行这套流程。
+然后编辑被分配的 Markdown 或源码，重新构建并审查差异：
+
+```bash
+python3 scripts/build_site.py
+git diff --check
+git diff
+```
+
+检查完成后按任务需要保存本地提交；向 GitHub 推送内容必须另获仓库所有者明确同意。直接在 `main` 工作不代表草稿自动通过教学审查，也不改变 CCP、课程架构或正式发布门槛。
+
+同一时间只安排一项会写入仓库的任务。多个 Agent 如需参与，可以分别阅读、提出建议，由当前编辑者整合；不要无协调地同时改写同一目录。发生本地与远端分歧时，先查看提交和差异，保留已有工作再处理。
 
 ## 本地重建 HTML
 
@@ -73,8 +81,8 @@ rsync -av index.html YOUR_USER@YOUR_HOST:/path/to/course-site/
 ## 一次改动的实际路线
 
 1. 读取 `README.md` 和治理规范，确定工作基线与当前章节状态。
-2. 新 Agent 在独立分支编辑 `chapters/*.md`，根据需要更新规范或实验源码。
+2. 在 `main` 编辑被分配的 `chapters/*.md`，根据需要更新规范或实验源码，不自动创建分支。
 3. 执行生成命令，检查文字、代码、表格、交互和无 JS 情况。
-4. 审核并合并 Git 变更；对重大课程方向变化先执行 CCP 流程。
-5. 用 rsync 把 HTML 阅读器发布到服务器，或把仓库 push 到远端以供其他 Agent 拉取。
+4. 审核 Git Diff，按任务需要保存本地提交；对重大课程方向变化先执行 CCP 流程。
+5. 经仓库所有者明确同意后，再执行对应的远端 push 或 rsync 发布。
 6. 不把 Git push 成功等同于“自动更新远端 HTML 网站”，除非另行配置并验证了发布流水线。
